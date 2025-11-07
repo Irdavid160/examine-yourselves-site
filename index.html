@@ -622,6 +622,36 @@
       .booking-inner {
         grid-template-columns: 1fr;
       }
+      @media (max-width: 800px) {
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  /* Order on mobile:
+     1) Text & buttons
+     2) Photo (riddells2/riddells3)
+     3) Now Booking card
+  */
+  .hero-buttons {
+    order: 1;
+  }
+
+  .hero-photo {
+    order: 2;
+    width: 100%;
+  }
+
+  .hero-card {
+    order: 3;
+    width: 100%;
+    top: 0;           /* cancel any manual 'top' shift if you added one earlier */
+    margin-top: 0;    /* optional: reset spacing */
+  }
+}
+
     }
   </style>
 </head>
