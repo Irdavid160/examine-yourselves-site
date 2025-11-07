@@ -1,191 +1,886 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Examine Yourselves Ministries</title>
+  <meta charset="UTF-8" />
+  <title>The Riddells | Anointed Gospel Music</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
   <style>
-    html {
-      scroll-behavior: smooth;
+    :root {
+      --color-bg: #050509;           /* Deep near-black */
+      --color-bg-alt: #0f1115;       /* Dark charcoal */
+      --color-primary: #f5e3b3;      /* Soft champagne gold */
+      --color-accent: #d4af37;       /* Rich gold */
+      --color-text: #f9fafb;         /* Off-white */
+      --color-muted: #9ca3af;        /* Muted gray */
+      --max-width: 1200px;
+      --radius-xl: 20px;
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background-color: #f5f0e6;
-      color: #2d2d2d;
+      font-family: "Lato", sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      scroll-behavior: smooth;
     }
 
-    header {
-      text-align: center;
-      background-color: #fff;
-      padding: 40px 20px 20px;
-    }
-
-    header img {
-      max-width: 220px;
-    }
-
-    nav {
-      background-color: #2d2d2d;
-      padding: 10px 0;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
+    a {
+      color: inherit;
       text-decoration: none;
-      font-weight: bold;
-      margin: 0 15px;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* NAVBAR */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(5,5,9,0.96);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .nav-logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 2px solid var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      letter-spacing: 0.14em;
+    }
+
+    .nav-logo-text {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--color-primary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-primary);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--color-accent), #fef3c7);
+      color: #111827;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-cta:hover {
+      filter: brightness(1.05);
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        font-size: 0.82rem;
+      }
+    }
+
+    /* HERO */
     .hero {
-      background-color: #8a1c1c;
-      color: white;
+      margin-top: 68px;
+      min-height: 92vh;
+      padding: 3.5rem 1.5rem 4.5rem;
+      background:
+        linear-gradient(to bottom, rgba(5,5,9,0.05), rgba(5,5,9,0.96)),
+        url("riddells-hero-placeholder.jpg") center/cover no-repeat;
+      /* Replace with a luxury-style photo of The Riddells */
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(280px, 1.3fr);
+      gap: 2.5rem;
+      align-items: flex-end;
+    }
+
+    .hero-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.4rem, 3.2vw + 1.7rem, 3.6rem);
+      font-weight: 700;
+      line-height: 1.12;
+      margin-bottom: 0.8rem;
+      color: var(--color-primary);
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      max-width: 32rem;
+      color: var(--color-muted);
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-gold {
+      padding: 0.9rem 1.7rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(to right, var(--color-accent), #fdf2c7);
+      color: #111827;
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.85);
+    }
+
+    .btn-gold:hover {
+      filter: brightness(1.06);
+    }
+
+    .btn-outline {
+      padding: 0.9rem 1.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--color-primary);
+      background: transparent;
+      color: var(--color-primary);
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(245,227,179,0.06);
+    }
+
+    .hero-note {
+      font-size: 0.75rem;
+      color: var(--color-muted);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, rgba(245,227,179,0.1), #050509);
+      border-radius: var(--radius-xl);
+      padding: 1.6rem 1.4rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(212,175,55,0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .hero-card p {
+      font-size: 0.86rem;
+      color: var(--color-muted);
+    }
+
+    .hero-card a {
+      font-size: 0.82rem;
+      color: var(--color-accent);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+      .hero-card {
+        order: -1;
+      }
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 4rem 1.5rem;
+      background-color: var(--color-bg);
+    }
+
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      font-family: "Playfair Display", serif;
+      font-size: 1.9rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      max-width: 34rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(260px, 1.3fr);
+      gap: 2.2rem;
+      align-items: center;
+    }
+
+    .about-photo {
+      background-color: var(--color-bg-alt);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      min-height: 260px;
+      border: 1px solid rgba(245,227,179,0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--color-muted);
       text-align: center;
-      padding: 60px 20px;
+      padding: 1.2rem;
+      /* Replace with group portrait image of The Riddells */
     }
 
-    .hero h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .hero p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
+    /* MUSIC & VIDEOS */
+    .media-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.9fr) minmax(260px, 1.2fr);
+      gap: 2rem;
+      align-items: flex-start;
     }
 
-    .section {
-      max-width: 960px;
-      margin: 60px auto;
-      padding: 0 20px;
+    .track-list {
+      display: grid;
+      gap: 0.9rem;
     }
 
-    .section h2 {
-      font-size: 1.8em;
-      color: #8a1c1c;
-      margin-bottom: 15px;
+    .track {
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      background-color: var(--color-bg-alt);
+      border: 1px solid rgba(148,163,253,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.65);
     }
 
-    .section p {
-      font-size: 1em;
-      line-height: 1.6;
+    .track-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-primary);
     }
 
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      padding: 20px;
-      background-color: #2d2d2d;
-      color: white;
+    .track-meta {
+      font-size: 0.75rem;
+      color: var(--color-muted);
+    }
+
+    .track-cta {
+      font-size: 0.7rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .video-card {
+      background-color: var(--color-bg-alt);
+      border-radius: var(--radius-xl);
+      padding: 1.1rem 1.1rem 1.3rem;
+      border: 1px solid rgba(212,175,55,0.28);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.82rem;
+      color: var(--color-muted);
+    }
+
+    .video-thumb {
+      width: 100%;
+      height: 170px;
+      background-color: #111827;
+      border-radius: 14px;
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-muted);
+      font-size: 0.8rem;
+      /* Replace with YouTube embed or preview image */
+    }
+
+    /* MINISTRY / ANOINTING SECTION */
+    .ministry {
+      background: radial-gradient(circle at top, rgba(245,227,179,0.06), #050509);
+    }
+
+    .ministry-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1.9fr) minmax(260px, 1.1fr);
+      gap: 2.2rem;
+      align-items: center;
+    }
+
+    .ministry-box {
+      background-color: var(--color-bg-alt);
+      border-radius: var(--radius-xl);
+      padding: 1.4rem 1.3rem;
+      border: 1px solid rgba(148,163,253,0.08);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.88rem;
+      color: var(--color-muted);
+    }
+
+    .ministry-highlight {
+      font-size: 0.8rem;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .media-grid,
+      .ministry-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* EVENTS / BOOKING */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .event-card {
+      background-color: var(--color-bg-alt);
+      border-radius: var(--radius-xl);
+      padding: 1.1rem 1rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148,163,253,0.12);
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    .event-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .event-meta {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+    }
+
+    @media (max-width: 900px) {
+      .events-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 1.8em;
+      .events-grid {
+        grid-template-columns: 1fr;
       }
+    }
 
-      .hero p, .section p {
-        font-size: 1em;
+    /* TESTIMONIALS */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 1.4rem;
+      font-size: 0.8rem;
+    }
+
+    .quote {
+      background-color: var(--color-bg-alt);
+      border-radius: 16px;
+      padding: 1rem 0.9rem;
+      border: 1px solid rgba(245,227,179,0.16);
+      box-shadow: var(--shadow-soft);
+      color: var(--color-muted);
+    }
+
+    .quote span {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .testimonials {
+        grid-template-columns: 1fr 1fr;
       }
+    }
 
-      nav a {
-        display: block;
-        margin: 10px 0;
+    @media (max-width: 600px) {
+      .testimonials {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* BOOKING / FOOTER */
+    .booking {
+      background-color: #050509;
+      padding: 3.2rem 1.5rem 2.4rem;
+    }
+
+    .booking-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(260px,1.1fr);
+      gap: 2.4rem;
+      align-items: flex-start;
+    }
+
+    .booking h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.7rem;
+      color: var(--color-primary);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .booking p {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      margin-bottom: 1rem;
+    }
+
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .booking-form input,
+    .booking-form textarea,
+    .booking-form select {
+      padding: 0.7rem 0.8rem;
+      border-radius: 10px;
+      border: 1px solid #111827;
+      background-color: #0d0f14;
+      color: var(--color-text);
+      font-size: 0.82rem;
+    }
+
+    .booking-form input::placeholder,
+    .booking-form textarea::placeholder {
+      color: #6b7280;
+    }
+
+    .booking-form button {
+      margin-top: 0.5rem;
+      align-self: flex-start;
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(to right, var(--color-accent), #fdf2c7);
+      color: #111827;
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.95);
+    }
+
+    .booking-form button:hover {
+      filter: brightness(1.05);
+    }
+
+    .booking-side ul {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .footer {
+      max-width: var(--max-width);
+      margin: 1.8rem auto 0;
+      font-size: 0.72rem;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .booking-inner {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- NAVBAR -->
   <header>
-    <img src="logo.png" alt="Examine Yourselves Ministries Logo">
+    <div class="nav">
+      <div class="nav-logo">
+        <div class="nav-logo-mark">TR</div>
+        <div class="nav-logo-text">The Riddells</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#music">Music &amp; Video</a>
+        <a href="#ministry">Ministry</a>
+        <a href="#events">Events</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#booking" class="nav-cta">Book Now</a>
+      </nav>
+    </div>
   </header>
 
-  <nav>
-    <a href="#devotions">Devotions</a>
-    <a href="#mission">Philippines</a>
-    <a href="#support">Support</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-kicker">Anointed • Excellent • Unforgettable</div>
+        <h1 class="hero-title">The Riddells</h1>
+        <p class="hero-subtitle">
+          A premier gospel family, blending world-class musicianship with a tangible anointing.
+          Every note points upward, every song calls hearts home.
+        </p>
+        <div class="hero-buttons">
+          <!-- Replace # with real links -->
+          <a href="#booking"><button class="btn-gold">Book The Riddells</button></a>
+          <a href="#music"><button class="btn-outline">Watch Latest Video</button></a>
+        </div>
+        <div class="hero-note">
+          Hero Image Placeholder: use a high-end group portrait in suits/dresses with a luxury backdrop.
+        </div>
+      </div>
 
-  <div class="hero">
-    <h1>Let a man examine himself.</h1>
-<p style="font-size: 0.9em; font-style: italic; margin-top: -10px;">
-  — 1 Corinthians 11:28
-</p>
-    <p>A ministry of conviction, calling, and commission.</p>
-  </div>
+      <div class="hero-card">
+        <h3>Now Booking 2025–2026</h3>
+        <p>Conferences • Campmeetings • Concerts • Church Revivals • Special Events</p>
+        <p><strong>Base Location:</strong> [City / Region Placeholder]</p>
+        <a href="#events">View Sample Schedule &raquo;</a>
 
-  <section id="devotions" class="section">
-    <h2>Devotions from the Furnace</h2>
-    <p>These are not devotionals written from a distance. They are born in the fire—when God deals with me directly. If you're hungry for truth and tired of shallow encouragement, you're in the right place.</p>
- 
-  <section id="devotions" class="section">
-  <h2>Daily Devotions</h2>
-  <p>Each devotion is born from real conversations with God—through trials, repentance, and clarity. Watch below, and allow the Spirit to search your heart.</p>
-
-  <div style="margin-top: 20px; text-align: center;">
-    <iframe width="100%" height="400"
-      src="https://www.youtube.com/embed/videoseries?list=PLnQmd9SVdUWPKW61b85XVfAoBVqSXGDhE"
-      title="Examine Yourselves Devotions"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-      style="max-width: 720px; width: 100%; border-radius: 8px;">
-    </iframe>
-  </div>
-
-  <p style="margin-top: 20px; font-size: 0.95em; text-align: center;">
-    Want to support this ministry? Visit our <a href="https://www.patreon.com/YOURPATREON" target="_blank" style="color: #8a1c1c; font-weight: bold;">Patreon page</a> to join the mission.
-  </p>
-</section>
-
+        <h3>Featured Appearance</h3>
+        <p>“[Placeholder for major event, award show, or televised performance]”</p>
+        <a href="#music">Hear Their Sound &raquo;</a>
+      </div>
+    </div>
   </section>
 
-  <section id="mission" class="section">
-    <h2>Philippines Mission</h2>
-    <p>Our heart beats for the Philippines. We are building a ministry training school, planting home churches across the islands, and preparing to launch youth camps that teach Scripture and service through joyful discipleship.</p>
-  </section>
-<div style="margin-top: 20px; text-align: center;">
-  <iframe width="100%" height="360" 
-          src="https://www.youtube.com/embed/hh5ZLNN_D8Q" 
-          title="Children's Church Intro" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen 
-          style="max-width: 720px; width: 100%; border-radius: 8px;">
-  </iframe>
-</div>
-
-  <section id="support" class="section">
-  <h2>Support the Work</h2>
-  <p>We don’t ask for pity. We ask for partners. This ministry exists to challenge, equip, and call the Body of Christ to deeper faith and obedience—through devotions, mission work, and training the next generation.</p>
-
-  <div style="margin-top: 20px; text-align: center;">
-    <iframe width="100%" height="360"
-      src="https://www.youtube.com/embed/nC4jFqglqcc"
-      title="Support the Ministry on Patreon"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-      style="max-width: 720px; width: 100%; border-radius: 8px;">
-    </iframe>
-  </div>
-
-  <p style="margin-top: 20px; font-size: 0.95em; text-align: center;">
-    If you'd like to help this ministry grow and reach more people, visit our <a href="https://patreon.com/ExamineYourselvesMinistries?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink" target="_blank" style="color: #8a1c1c; font-weight: bold;">Patreon page</a> to partner with us.
-  </p>
-</section>
-
-
-  <section id="contact" class="section">
-    <h2>Contact</h2>
-    <p>Have a prayer request? Want to partner or connect? Email us at <strong>contact@examineyourselves.org</strong>.</p>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner about-grid">
+      <div>
+        <h2 class="section-heading">About The Riddells</h2>
+        <p class="section-subtitle">
+          A family rooted in the local church, refined on the road, and marked by excellence and the presence of God.
+        </p>
+        <p>
+          Use this space for 2–3 short paragraphs: their heritage, calling, family story, and how their music
+          marries technical excellence with authentic anointing. Mention harmony vocals, live instruments, songwriting,
+          and their heart for both the lost and the church.
+        </p>
+      </div>
+      <div class="about-photo">
+        GROUP PHOTO PLACEHOLDER<br/>
+        Replace with a polished photo of The Riddells in coordinated outfits
+        (dark tones + gold accents work beautifully).
+      </div>
+    </div>
   </section>
 
-  <footer>
-    &copy; 2025 Examine Yourselves Ministries. All Rights Reserved.
-  </footer>
+  <!-- MUSIC & VIDEO -->
+  <section id="music">
+    <div class="section-inner media-grid">
+      <div>
+        <h2 class="section-heading">Music &amp; Video</h2>
+        <p class="section-subtitle">
+          Showcase their best songs, live sessions, and official videos. Link to streaming platforms here.
+        </p>
+
+        <div class="track-list">
+          <div class="track">
+            <div>
+              <div class="track-title">[Song Title Placeholder]</div>
+              <div class="track-meta">Single • Year • Link to Spotify / Apple / YouTube</div>
+            </div>
+            <div class="track-cta">Listen</div>
+          </div>
+          <div class="track">
+            <div>
+              <div class="track-title">[Song Title Placeholder]</div>
+              <div class="track-meta">Live from [Event / Church]</div>
+            </div>
+            <div class="track-cta">Watch</div>
+          </div>
+          <div class="track">
+            <div>
+              <div class="track-title">[Album Name Placeholder]</div>
+              <div class="track-meta">Full Project • “Available Now”</div>
+            </div>
+            <div class="track-cta">View</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="video-card">
+        <div class="video-thumb">
+          FEATURED VIDEO<br/>
+          Replace with YouTube embed of their best live performance.
+        </div>
+        <p>
+          Use this block for a short line: “Experience The Riddells live in worship –
+          captured at [Event Name].”
+        </p>
+        <a href="#">View full media archive &raquo;</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- MINISTRY HEART -->
+  <section id="ministry" class="ministry">
+    <div class="section-inner ministry-content">
+      <div>
+        <h2 class="section-heading">More Than Music</h2>
+        <p class="section-subtitle">
+          Emphasize that this is not just a show. It’s altar calls, prayer, and the presence of God.
+        </p>
+        <div class="ministry-box">
+          <div class="ministry-highlight">Ministry Focus</div>
+          <p>
+            Share their core convictions: holiness, the Gospel, the authority of Scripture,
+            and creating space for the Holy Ghost to move.
+            Clarify: “We bring excellence, but we refuse to quench the Spirit.”
+          </p>
+        </div>
+      </div>
+      <div class="ministry-box">
+        <div class="ministry-highlight">Service Options</div>
+        <p>
+          • Full concert sets<br/>
+          • Leading worship for conferences<br/>
+          • Revival services with music + testimony<br/>
+          • Special church or outreach events
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section id="events">
+    <div class="section-inner">
+      <h2 class="section-heading">Sample Schedule</h2>
+      <p class="section-subtitle">
+        Use this to show momentum. Even a few confirmed or “previous” events builds credibility.
+      </p>
+
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-title">[Church / Conference Name]</div>
+          <div class="event-meta">City, State • Date</div>
+          <div class="event-meta">Revival / Concert / Special Service</div>
+        </div>
+        <div class="event-card">
+          <div class="event-title">[Campmeeting / Convention]</div>
+          <div class="event-meta">City, State • Date</div>
+          <div class="event-meta">Worship &amp; Special Music</div>
+        </div>
+        <div class="event-card">
+          <div class="event-title">[Previous Highlight Event]</div>
+          <div class="event-meta">Testimonial-worthy engagement</div>
+          <div class="event-meta">“Our church was never the same.”</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="section-inner">
+      <h2 class="section-heading">What Others Are Saying</h2>
+      <p class="section-subtitle">
+        This is where the “screams success” happens: pastors, leaders, and attendees validating both excellence and anointing.
+      </p>
+
+      <div class="testimonials">
+        <div class="quote">
+          “The Riddells didn’t just sing. They ushered our people into the presence of God with integrity and power.”
+          <span>&mdash; Pastor [Name], [Church / City]</span>
+        </div>
+        <div class="quote">
+          “Professional, prepared, and sensitive to the Holy Spirit. We will absolutely have them back.”
+          <span>&mdash; Event Director [Name]</span>
+        </div>
+        <div class="quote">
+          “Our altars were full. Their ministry is as authentic as it is excellent.”
+          <span>&mdash; [Testimony Source]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="booking" class="booking">
+    <div class="booking-inner">
+      <div>
+        <h2>Booking &amp; Inquiries</h2>
+        <p>
+          For conferences, revivals, special events, and church services, complete the form below.
+          Serious, prayerful, and well-organized invitations only, please.
+        </p>
+        <form class="booking-form" action="#" method="post">
+          <!-- Hook this to your form handler or email -->
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="text" name="church" placeholder="Church / Organization" required />
+          <input type="email" name="email" placeholder="Email Address" required />
+          <input type="text" name="location" placeholder="Event City / State / Country" required />
+          <select name="event_type" required>
+            <option value="">Select Event Type</option>
+            <option>Conference</option>
+            <option>Revival / Campmeeting</option>
+            <option>Sunday Service / Special Service</option>
+            <option>Concert / Outreach</option>
+            <option>Other</option>
+          </select>
+          <textarea name="details" rows="4" placeholder="Proposed dates, event vision, and any details."></textarea>
+          <button type="submit">Submit Booking Request</button>
+        </form>
+      </div>
+
+      <aside class="booking-side">
+        <ul>
+          <li><strong>The Riddells Management</strong></li>
+          <li>Email: <a href="mailto:booking@theriddells.com">booking@theriddells.com</a> (placeholder)</li>
+          <li>Phone: [Booking phone placeholder]</li>
+          <li>Instagram: [link placeholder]</li>
+          <li>Facebook: [link placeholder]</li>
+          <li>YouTube: [link placeholder]</li>
+          <li>Press kit &amp; tech rider available upon request.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="footer">
+      <div>© <span id="year"></span> The Riddells. All rights reserved.</div>
+      <div>Excellence unto God. Ministry unto people.</div>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
 </body>
 </html>
