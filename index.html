@@ -46,8 +46,8 @@
     }
 
     html {
-  scroll-padding-top: 80px; /* Adjust to match your header height */
-}
+      scroll-padding-top: 80px; /* Adjust to match your header height */
+    }
 
     /* NAVBAR */
     header {
@@ -145,6 +145,17 @@
 
     .nav-cta:hover {
       filter: brightness(1.05);
+    }
+
+    /* Ensure the hamburger is hidden on desktop by default */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-primary);
+      font-size: 1.7rem;
+      cursor: pointer;
+      z-index: 60; /* make sure it's above other header content when shown */
     }
 
     @media (max-width: 900px) {
@@ -626,80 +637,74 @@
       .booking-inner {
         grid-template-columns: 1fr;
       }
-      @media (max-width: 800px) {
-  .hero-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-  }
+    }
 
-  /* Order on mobile:
-     1) Text & buttons
-     2) Photo (riddells2/riddells3)
-     3) Now Booking card
-  */
-  .hero-buttons {
-    order: 1;
-  }
+    /* Mobile-specific layout tweaks */
+    @media (max-width: 800px) {
+      .hero-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
 
-  .hero-photo {
-    order: 2;
-    width: 100%;
-  }
+      /* Order on mobile:
+         1) Text & buttons
+         2) Photo (riddells2/riddells3)
+         3) Now Booking card
+      */
+      .hero-buttons {
+        order: 1;
+      }
 
-  .hero-card {
-    order: 3;
-    width: 100%;
-    top: 0;           /* cancel any manual 'top' shift if you added one earlier */
-    margin-top: 0;    /* optional: reset spacing */
-  }
+      .hero-photo {
+        order: 2;
+        width: 100%;
+      }
 
-                /* Default: show links, hide hamburger on desktop */
-/* Default desktop behavior:
-   - Show nav links
-   - Hide hamburger
-*/
-.nav-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--color-primary);
-  font-size: 1.7rem;
-  cursor: pointer;
-}
+      .hero-card {
+        order: 3;
+        width: 100%;
+        top: 0;           /* cancel any manual 'top' shift if you added one earlier */
+        margin-top: 0;    /* optional: reset spacing */
+      }
 
-/* Mobile nav behavior */
-@media (max-width: 800px) {
-  .nav {
-    align-items: center;
-  }
+      /* Default: show links, hide hamburger on desktop */
+      /* Default desktop behavior:
+         - Show nav links
+         - Hide hamburger
+      */
+      .nav-toggle {
+        display: block;        /* only show hamburger on mobile */
+        margin-left: auto;
+      }
 
-  .nav-toggle {
-    display: block;        /* only show hamburger on mobile */
-    margin-left: auto;
-  }
+      /* Mobile nav behavior */
+      .nav {
+        align-items: center;
+      }
 
-  .nav-links {
-    display: none;         /* hide links until menu opened */
-    flex-direction: column;
-    width: 100%;
-    padding: 0.75rem 0 0.25rem;
-    gap: 0.6rem;
-    background-color: rgba(5,5,9,0.98);
-  }
+      .nav-links {
+        display: none;         /* hide links until menu opened */
+        flex-direction: column;
+        width: 100%;
+        padding: 0.75rem 0 0.25rem;
+        gap: 0.6rem;
+        background-color: rgba(5,5,9,0.98);
+      }
 
-  .nav-links.show {
-    display: flex;         /* show when hamburger clicked */
-  }
+      .nav-links.show {
+        display: flex;         /* show when hamburger clicked */
+      }
 
-  .nav-links a {
-    padding: 0.25rem 0.5rem;
-  }
+      .nav-links a {
+        padding: 0.25rem 0.5rem;
+      }
 
-  .nav-cta {
-    width: fit-content;
-  }
+      .nav-cta {
+        width: fit-content;
+      }
+    }
   </style>
 </head>
 <body>
@@ -712,7 +717,7 @@
     </div>
 
     <!-- Hamburger button (mobile only) -->
-    <button class="nav-toggle" aria-label="Toggle navigation">
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
       ☰
     </button>
 
@@ -969,21 +974,31 @@
   </section>
 
 <script>
+  // Defensive JS: only attach listeners if the elements exist
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
   const navItems = document.querySelectorAll('.nav-links a');
 
-  // Toggle the menu when hamburger is clicked
-  navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
-  });
-
-  // Close the menu when any link is clicked
-  navItems.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('show');
+  if (navToggle && navLinks) {
+    // Toggle the menu when hamburger is clicked
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      navLinks.classList.toggle('show');
     });
-  });
+
+    // Close the menu when any link is clicked (mobile)
+    navItems.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Small helper: set current year in footer
+  const yearSpan = document.getElementById('year');
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 </script>
 
 </body>
